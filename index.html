@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizador da Bre</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Objetos 3D Flutuantes de Fundo -->
+    <div class="bg-3d-scene">
+        <div class="shape cube shape-1"></div>
+        <div class="shape pyramid shape-2"></div>
+        <div class="shape sphere shape-3"></div>
+        <div class="shape cube shape-4"></div>
+    </div>
+
+    <div class="container">
+        <!-- Cabeçalho Principal -->
+        <header class="header">
+            <h1 class="title">Organizador da Bre</h1>
+            <p class="description">
+                Seu espaço central para gerenciar rotinas, manter o foco e otimizar o tempo. 
+                Explore as ferramentas e clique nos cards abaixo para visualizar dicas valiosas de produtividade!
+            </p>
+        </header>
+
+        <!-- Seção de Cartões Interativos / Dicas -->
+        <section class="section">
+            <h2 class="section-title">💡 Dicas & Estratégias de Organização</h2>
+            <div class="cards-grid">
+                
+                <div class="card" onclick="openModal('modal-pomodoro')">
+                    <div class="card-icon">⏱️</div>
+                    <h3 class="card-title">Técnica Pomodoro</h3>
+                    <p class="card-summary">Divida o trabalho em blocos focados de 25 minutos e recarregue a mente.</p>
+                    <span class="card-btn">Ver Detalhes &rarr;</span>
+                </div>
+
+                <div class="card" onclick="openModal('modal-eisenhower')">
+                    <div class="card-icon">📊</div>
+                    <h3 class="card-title">Matriz de Prioridades</h3>
+                    <p class="card-summary">Aprenda a diferenciar o que é urgente do que é realmente importante.</p>
+                    <span class="card-btn">Ver Detalhes &rarr;</span>
+                </div>
+
+                <div class="card" onclick="openModal('modal-rotina')">
+                    <div class="card-icon">🌙</div>
+                    <h3 class="card-title">Rotina Noturna</h3>
+                    <p class="card-summary">Prepare o seu dia seguinte na noite anterior para acordar sem estresse.</p>
+                    <span class="card-btn">Ver Detalhes &rarr;</span>
+                </div>
+
+                <div class="card" onclick="openModal('modal-haiku')">
+                    <div class="card-icon">🎯</div>
+                    <h3 class="card-title">Regra das 3 Tarefas</h3>
+                    <p class="card-summary">Mantenha a lista simples e defina no máximo 3 metas vitais por dia.</p>
+                    <span class="card-btn">Ver Detalhes &rarr;</span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Simulação de Painel de Tarefas / Rotina -->
+        <section class="section">
+            <h2 class="section-title">📋 Minha Rotina Diária</h2>
+            <div class="todo-widget">
+                <div class="todo-item checked">
+                    <input type="checkbox" checked disabled>
+                    <span>Planejar as metas principais do dia</span>
+                </div>
+                <div class="todo-item">
+                    <input type="checkbox" disabled>
+                    <span>Executar o bloco de trabalho focado (Pomodoro)</span>
+                </div>
+                <div class="todo-item">
+                    <input type="checkbox" disabled>
+                    <span>Revisar pendências e organizar a mesa</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modais Informativos (Aparecem em Destaque) -->
+    <div id="modal-pomodoro" class="modal-overlay" onclick="closeModalOnOuterClick(event, 'modal-pomodoro')">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-pomodoro')">&times;</span>
+            <div class="modal-icon">⏱️</div>
+            <h2>Técnica Pomodoro</h2>
+            <p><strong>Como funciona:</strong> Trabalhe por 25 minutos em foco absoluto (sem celular ou redes sociais) e faça uma pausa de 5 minutos. Após 4 ciclos, faça uma pausa maior de 15 a 30 minutos.</p>
+            <p><strong>Benefício:</strong> Evita a fadiga mental e combate a procrastinação ao quebrar grandes tarefas em partes menores.</p>
+        </div>
+    </div>
+
+    <div id="modal-eisenhower" class="modal-overlay" onclick="closeModalOnOuterClick(event, 'modal-eisenhower')">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-eisenhower')">&times;</span>
+            <div class="modal-icon">📊</div>
+            <h2>Matriz de Prioridades (Eisenhower)</h2>
+            <p><strong>Divida suas tarefas em 4 quadrantes:</strong></p>
+            <ul>
+                <li><strong>Urgente + Importante:</strong> Faça agora!</li>
+                <li><strong>Não Urgente + Importante:</strong> Agende para fazer.</li>
+                <li><strong>Urgente + Não Importante:</strong> Delegue se possível.</li>
+                <li><strong>Não Urgente + Não Importante:</strong> Elimine!</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="modal-rotina" class="modal-overlay" onclick="closeModalOnOuterClick(event, 'modal-rotina')">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-rotina')">&times;</span>
+            <div class="modal-icon">🌙</div>
+            <h2>Planejamento da Rotina Noturna</h2>
+            <p>Tirar 10 minutos antes de dormir para anotar as 3 tarefas principais de amanhã liberta sua mente da ansiedade noturna.</p>
+            <p>Organize sua mesa de trabalho e separe roupas/materiais na noite anterior para começar o dia com energia total.</p>
+        </div>
+    </div>
+
+    <div id="modal-haiku" class="modal-overlay" onclick="closeModalOnOuterClick(event, 'modal-haiku')">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-haiku')">&times;</span>
+            <div class="modal-icon">🎯</div>
+            <h2>A Regra das 3 Tarefas Vitais</h2>
+            <p>Listas gigantescas de tarefas geram paralisia. Escolha apenas <strong>três tarefas</strong> essenciais que tornariam o seu dia um sucesso se fossem concluídas.</p>
+            <p>Foque 100% nelas antes de atender demandas secundárias ou e-mails.</p>
+        </div>
+    </div>
+
+    <!-- Script de Controle do Modal -->
+    <script>
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+
+        function closeModalOnOuterClick(event, id) {
+            if (event.target.id === id) {
+                closeModal(id);
+            }
+        }
+    </script>
+</body>
+</html>

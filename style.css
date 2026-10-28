@@ -1,0 +1,295 @@
+/* RESET BÁSICO E CONFIGURAÇÃO DA PÁGINA */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #050203;
+    color: #f1f1f1;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    padding-bottom: 50px;
+}
+
+/* PALETA DE CORES GRADIENTE (MARSALA E PRETO) */
+:root {
+    --marsala-dark: #3b0a12;
+    --marsala-main: #800020;
+    --marsala-light: #b32438;
+    --black-bg: #0a0507;
+    --card-bg: rgba(25, 10, 15, 0.7);
+    --modal-bg: #140508;
+}
+
+/* EFEITO 3D NO FUNDO COM OBJETOS VOANDO */
+.bg-3d-scene {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    perspective: 1000px;
+    overflow: hidden;
+    background: radial-gradient(circle at center, var(--marsala-dark) 0%, var(--black-bg) 80%);
+}
+
+.shape {
+    position: absolute;
+    filter: drop-shadow(0 0 15px rgba(128, 0, 32, 0.6));
+    opacity: 0.5;
+    animation: float3d 12s infinite ease-in-out alternate;
+}
+
+.cube {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--marsala-main), #000);
+    border-radius: 12px;
+    transform: rotateX(45deg) rotateY(45deg);
+}
+
+.pyramid {
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 90px solid var(--marsala-light);
+    transform: rotate(25deg) rotateX(30deg);
+}
+
+.sphere {
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle at 30% 30%, var(--marsala-light), #000);
+    border-radius: 50%;
+}
+
+.shape-1 { top: 15%; left: 10%; animation-delay: 0s; }
+.shape-2 { top: 60%; left: 80%; animation-delay: -3s; }
+.shape-3 { top: 75%; left: 15%; animation-delay: -6s; }
+.shape-4 { top: 20%; left: 75%; animation-delay: -9s; }
+
+@keyframes float3d {
+    0% {
+        transform: translateY(0) rotate(0deg) translateZ(0);
+    }
+    100% {
+        transform: translateY(-40px) rotate(360deg) translateZ(150px);
+    }
+}
+
+/* LAYOUT CONTAINER */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* CABEÇALHO */
+.header {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding: 30px;
+    background: linear-gradient(135deg, rgba(128, 0, 32, 0.4), rgba(10, 5, 7, 0.8));
+    border: 1px solid rgba(179, 36, 56, 0.3);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+}
+
+.title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, #ffffff, var(--marsala-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.description {
+    font-size: 1.1rem;
+    color: #cccccc;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* SEÇÃO E GRID DE CARDS */
+.section {
+    margin-bottom: 40px;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: var(--marsala-light);
+    border-left: 4px solid var(--marsala-main);
+    padding-left: 10px;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid rgba(128, 0, 32, 0.3);
+    border-radius: 14px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: var(--marsala-light);
+    box-shadow: 0 12px 25px rgba(179, 36, 56, 0.4);
+    background: linear-gradient(145deg, rgba(128, 0, 32, 0.5), rgba(20, 5, 8, 0.9));
+}
+
+.card-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.card-summary {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.card-btn {
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: var(--marsala-light);
+    align-self: flex-start;
+}
+
+/* WIDGET DE TAREFAS SIMULADO */
+.todo-widget {
+    background: var(--card-bg);
+    border: 1px solid rgba(128, 0, 32, 0.2);
+    border-radius: 14px;
+    padding: 20px;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.todo-item:last-child {
+    border-bottom: none;
+}
+
+.todo-item input {
+    margin-right: 15px;
+    accent-color: var(--marsala-main);
+    transform: scale(1.2);
+}
+
+.todo-item.checked span {
+    text-decoration: line-through;
+    color: #777;
+}
+
+/* EFEITO MODAL DE DESTAQUE */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-content {
+    background: linear-gradient(135deg, var(--modal-bg), #000000);
+    border: 2px solid var(--marsala-light);
+    border-radius: 16px;
+    padding: 30px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 0 30px rgba(179, 36, 56, 0.5);
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 1.8rem;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.modal-close:hover {
+    color: var(--marsala-light);
+}
+
+.modal-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.modal-content h2 {
+    color: #fff;
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--marsala-main);
+    padding-bottom: 8px;
+}
+
+.modal-content p, .modal-content ul {
+    font-size: 0.95rem;
+    color: #ddd;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.modal-content ul {
+    padding-left: 20px;
+}
